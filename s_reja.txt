@@ -1,0 +1,32 @@
+Plan of doing works -----------------------------------------
+
+1. Media jadvalga bog'langan barcha jadvallarga delete requestni chaqirib chiqish ✅
+2. Media jadvalga bog'langan barcha jadvallardan getAll xatosini tog'irlab chiqish ✅
+3. user_opinion uchun CRUD yozish, boshqa jadvallarga ulash ✅
+4. user_opinion jadvaliga bog'langan jadvallarga total_star maydonini hisoblab qo'yadigan qilish ✅⚠️
+5. Admin uchun CRUD yozish ✅ 
+6. Guardlarni yozib chiqish  
+    admin-all               ✅
+    admin-creator           ✅            
+    admin-self              ✅
+    author-admin-all        ✅
+    author-admin-reqbody    ✅
+    author-admin-self       ✅
+    user-admin-all          ✅
+    user-admin-reqbody      ✅
+    user-admin-self         ✅
+7. Botga habar yuboradigan qilish ❌
+8. nodmailer orqali emailga habar yuboradigan ❌
+9. Entitylarga @HasMany qo'yib chiqish ✅
+10. Admin & Authorga activete routini qo'shish ✅
+11. Article, Post, Course, Exercise, Test, News CRUD lardagi is_checked & is_approved lar uchun route yozish ✅
+
+
+Questions ---------------------------------------------------
+
+1. Servicelar o'zaro siklga tushib qolishi ⚠️
+2. Uch xil (rasm, video, hujjat) fayllar bilan ishlash va ularning kengaytmalarini tekshirish ⚠️
+3. Service qaytaradigan qiymat turinini qanday aniqlash: Promise<Object>, Record<string, any> ⚠️
+4. Status, region, category, district jadvallari static jadval bo'ladimi yoki dinamikmi? ⚠️
+5. Author & Admin registration? Userni Author yoki Admin sifatida belgilamoqchi bo'lsam, qanday qilaman? ⚠️
+6. 
