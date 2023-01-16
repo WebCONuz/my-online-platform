@@ -14,10 +14,6 @@ import { Opinion } from './entity/opinion.entity';
 @Injectable()
 export class UserOpinionService {
   constructor(
-    @Inject(forwardRef(() => CourseService))
-    private readonly courseService: CourseService,
-    // @Inject(forwardRef(() => ArticleService))
-    // private readonly articleService: ArticleService,
     @InjectModel(Opinion) private opinionRepository: typeof Opinion,
   ) {}
 
@@ -25,33 +21,6 @@ export class UserOpinionService {
   async create(createBody: CreateOpinionDto) {
     try {
       const opinion = await this.opinionRepository.create(createBody);
-
-      // Get Opinion for only Course or Article
-      const allOpinions = await this.opinionRepository.findAll({
-        where: {
-          target_table_name: opinion.target_table_name,
-          target_table_id: String(opinion.target_table_id),
-        },
-        include: { all: true },
-      });
-
-      // Calculate average value
-      let total_star = 0,
-        n = 0;
-      for (let i = 0; i < allOpinions.length; i++) {
-        total_star += allOpinions[i].star;
-        n++;
-      }
-      let star = Math.round((total_star / n) * 10) / 10;
-      console.log(total_star, n, star);
-
-      // Update star of Course or Article
-      if (opinion.target_table_name === 'course') {
-        await this.courseService.updateStar(+opinion.target_table_id, star);
-      } else if (opinion.target_table_name === 'article') {
-        // await this.articleService.updateStar(+opinion.target_table_id, star);
-      }
-
       return opinion;
     } catch (error) {
       throw new InternalServerErrorException(error.message);

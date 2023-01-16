@@ -14,7 +14,7 @@ import { Course } from './entity/course.entity';
     SequelizeModule.forFeature([Course, Category, Author]),
     JwtModule,
     MediaModule,
-    forwardRef(() => UserOpinionModule),
+    UserOpinionModule,
   ],
   controllers: [CourseController],
   providers: [CourseService],

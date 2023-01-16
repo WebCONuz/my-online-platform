@@ -39,9 +39,9 @@ export class CourseService {
         include: { all: true },
       });
 
-      // Add files & user opinions to Course
       let newData = [];
       for (let i = 0; i < data.length; i++) {
+        // Add files & user opinions to Course
         const dataFiles = await this.mediaService.getMediaByName(
           'course',
           data[i].id,
@@ -56,6 +56,27 @@ export class CourseService {
           files: [...obj.files],
           opinions: [...obj.opinions],
         });
+
+        // Update total star
+        let id = i + 1,
+          total_star = 0,
+          n = 0;
+        const courseOne = await this.getOne(i + 1);
+        let opt = courseOne['opinions'];
+
+        for (let i = 0; i < opt.length; i++) {
+          total_star += opt[i].dataValues.star;
+          n++;
+        }
+        let starAvg = Math.round((total_star / n) * 10) / 10;
+
+        await this.courseRepository.update(
+          { total_star: starAvg },
+          {
+            where: { id },
+            returning: true,
+          },
+        );
       }
 
       // return new list

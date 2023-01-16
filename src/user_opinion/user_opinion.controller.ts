@@ -9,7 +9,11 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
-import { AllAdminGuard, UserAdminReqBodyGuard } from '../common/guards';
+import {
+  AllAdminGuard,
+  AllGuard,
+  UserAdminReqBodyGuard,
+} from '../common/guards';
 import { CreateOpinionDto } from './dto/create-opinion.dto';
 import { UpdateOpinionDto } from './dto/update-opinion.dto';
 import { Opinion } from './entity/opinion.entity';
@@ -23,7 +27,7 @@ export class UserOpinionController {
   // Create Opinion Controller
   @ApiOperation({ summary: 'Create Opinion' })
   @ApiResponse({ status: 201, type: Opinion })
-  @UseGuards(UserAdminReqBodyGuard)
+  @UseGuards(AllGuard)
   @Post()
   create(@Body() createBody: CreateOpinionDto) {
     return this.opinionService.create(createBody);

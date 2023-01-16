@@ -11,3 +11,4 @@ export * from './author-admin-reqbody.guard';
 export * from './user-admin-self.guard';
 export * from './user-admin-all.guard';
 export * from './user-admin-reqbody.guard';
+export * from './all.guard';

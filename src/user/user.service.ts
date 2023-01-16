@@ -14,6 +14,7 @@ import { Response } from 'express';
 import { LoginUserDto } from './dto/login-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { MediaService } from '../media/media.service';
+import { EmailService } from '../email/email.service';
 
 @Injectable()
 export class UserService {
@@ -21,6 +22,7 @@ export class UserService {
     @InjectModel(User) private userRepository: typeof User,
     private jwtService: JwtService,
     private readonly mediaService: MediaService,
+    private readonly mailService: EmailService,
   ) {}
 
   // Signup User Service
@@ -46,6 +48,8 @@ export class UserService {
         maxAge: 7 * 24 * 60 * 60 * 1000,
         httpOnly: true,
       });
+
+      this.mailService.sendMail(newUser.email, "Salom, Ro'yxatdan o'tdingiz.");
 
       return tokens;
     } catch (error) {
@@ -83,6 +87,8 @@ export class UserService {
         maxAge: 7 * 24 * 60 * 60 * 1000,
         httpOnly: true,
       });
+
+      this.mailService.sendMail(user.email, 'Salom, Siz tizimga kirdingiz.');
 
       return tokens;
     } catch (error) {

@@ -6,13 +6,19 @@ import {
   RefreshTokenFromBearerStrategy,
   RefreshTokenFromCookieStrategy,
 } from 'src/common/strategies';
+import { EmailModule } from '../email/email.module';
 import { MediaModule } from '../media/media.module';
 import { User } from './entity/user.entity';
 import { UserController } from './user.controller';
 import { UserService } from './user.service';
 
 @Module({
-  imports: [SequelizeModule.forFeature([User]), JwtModule, MediaModule],
+  imports: [
+    SequelizeModule.forFeature([User]),
+    JwtModule,
+    MediaModule,
+    EmailModule,
+  ],
   controllers: [UserController],
   providers: [
     UserService,

@@ -14,7 +14,7 @@ import { Article } from './entity/article.entity';
     SequelizeModule.forFeature([Article, Category, Author]),
     MediaModule,
     JwtModule,
-    forwardRef(() => UserOpinionModule),
+    UserOpinionModule,
   ],
   controllers: [ArticleController],
   providers: [ArticleService],

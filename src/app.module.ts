@@ -8,11 +8,6 @@ import { DistrictModule } from './district/district.module';
 import { UserModule } from './user/user.module';
 import { CreditCardModule } from './credit_card/credit_card.module';
 import { UserAddressModule } from './user_address/user_address.module';
-import { CreditCard } from './credit_card/entity/credit-card.entity';
-import { District } from './district/entity/district.entity';
-import { Region } from './region/entity/region.entity';
-import { User } from './user/entity/user.entity';
-import { UserAddress } from './user_address/entity/address.entity';
 import { AuthorModule } from './author/author.module';
 import { PostsModule } from './posts/posts.module';
 import { CategoryModule } from './category/category.module';
@@ -31,12 +26,30 @@ import { FilesModule } from './files/files.module';
 import { MediaModule } from './media/media.module';
 import { UserOpinionModule } from './user_opinion/user_opinion.module';
 import { AdminModule } from './admin/admin.module';
+import { EmailModule } from './email/email.module';
+import { MailerModule } from '@nestjs-modules/mailer';
 
 @Module({
   imports: [
     // Read environment variables
     ConfigModule.forRoot({
       envFilePath: `.${process.env.NODE_ENV}.env`,
+    }),
+
+    // Send Email -------------------------------------
+    MailerModule.forRoot({
+      transport: {
+        host: process.env.SMTP_HOST,
+        port: +process.env.SMTP_PORT,
+        secure: false,
+        auth: {
+          user: process.env.SMTP_USER,
+          pass: process.env.SMTP_PASSWORD,
+        },
+      },
+      defaults: {
+        from: process.env.SMTP_USER,
+      },
     }),
 
     // Static Folder
@@ -82,6 +95,7 @@ import { AdminModule } from './admin/admin.module';
     MediaModule,
     UserOpinionModule,
     AdminModule,
+    EmailModule,
   ],
 })
 export class AppModule {}

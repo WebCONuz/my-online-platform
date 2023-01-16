@@ -3,7 +3,7 @@ Plan of doing works -----------------------------------------
 1. Media jadvalga bog'langan barcha jadvallarga delete requestni chaqirib chiqish ✅
 2. Media jadvalga bog'langan barcha jadvallardan getAll xatosini tog'irlab chiqish ✅
 3. user_opinion uchun CRUD yozish, boshqa jadvallarga ulash ✅
-4. user_opinion jadvaliga bog'langan jadvallarga total_star maydonini hisoblab qo'yadigan qilish ✅⚠️
+4. user_opinion jadvaliga bog'langan jadvallarga total_star maydonini hisoblab qo'yadigan qilish ✅⚠️   
 5. Admin uchun CRUD yozish ✅ 
 6. Guardlarni yozib chiqish  
     admin-all               ✅
@@ -15,11 +15,15 @@ Plan of doing works -----------------------------------------
     user-admin-all          ✅
     user-admin-reqbody      ✅
     user-admin-self         ✅
+    all                     ✅
 7. Botga habar yuboradigan qilish ❌
-8. nodmailer orqali emailga habar yuboradigan ❌
+8. nodmailer orqali emailga habar yuboradigan ✅
 9. Entitylarga @HasMany qo'yib chiqish ✅
 10. Admin & Authorga activete routini qo'shish ✅
 11. Article, Post, Course, Exercise, Test, News CRUD lardagi is_checked & is_approved lar uchun route yozish ✅
+12. Hosting olish
+13. Docker qilish
+14. Hostingga o'rnatish
 
 
 Questions ---------------------------------------------------
