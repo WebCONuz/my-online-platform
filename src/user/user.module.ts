@@ -8,6 +8,7 @@ import {
 } from 'src/common/strategies';
 import { EmailModule } from '../email/email.module';
 import { MediaModule } from '../media/media.module';
+import { TelegramBotModule } from '../telegram-bot/telegram-bot.module';
 import { User } from './entity/user.entity';
 import { UserController } from './user.controller';
 import { UserService } from './user.service';
@@ -18,6 +19,7 @@ import { UserService } from './user.service';
     JwtModule,
     MediaModule,
     EmailModule,
+    TelegramBotModule,
   ],
   controllers: [UserController],
   providers: [

@@ -7,14 +7,12 @@ export class EmailService {
 
   async sendMail(email: string, message: string) {
     try {
-      const result = await this.mailerService.sendMail({
+      await this.mailerService.sendMail({
         to: email, // list of receivers
         subject: message,
         text: 'message', // plaintext body
-        html: '<b>welcome</b>', // HTML body content
+        html: "<b>Online ta'lim platformasiga xush kelibsiz!</b>", // HTML body content
       });
-
-      console.log(result);
     } catch (error) {
       console.log(error.message);
     }

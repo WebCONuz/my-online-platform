@@ -28,6 +28,9 @@ import { UserOpinionModule } from './user_opinion/user_opinion.module';
 import { AdminModule } from './admin/admin.module';
 import { EmailModule } from './email/email.module';
 import { MailerModule } from '@nestjs-modules/mailer';
+import { TelegrafModule } from 'nestjs-telegraf';
+import { TelegramBotModule } from './telegram-bot/telegram-bot.module';
+import { MyBotName } from './app.constants';
 
 @Module({
   imports: [
@@ -51,6 +54,17 @@ import { MailerModule } from '@nestjs-modules/mailer';
         from: process.env.SMTP_USER,
       },
     }),
+
+    // Telegram Bot
+    TelegrafModule.forRootAsync({
+      botName: MyBotName,
+      useFactory: () => ({
+        token: process.env.TELEGRAM_BOT_TOKEN,
+        middlewares: [],
+        include: [TelegramBotModule],
+      }),
+    }),
+    TelegramBotModule,
 
     // Static Folder
     ServeStaticModule.forRoot({
@@ -96,6 +110,7 @@ import { MailerModule } from '@nestjs-modules/mailer';
     UserOpinionModule,
     AdminModule,
     EmailModule,
+    TelegramBotModule,
   ],
 })
 export class AppModule {}

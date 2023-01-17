@@ -15,6 +15,7 @@ import { LoginUserDto } from './dto/login-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { MediaService } from '../media/media.service';
 import { EmailService } from '../email/email.service';
+import { TelegramBotService } from '../telegram-bot/telegram-bot.service';
 
 @Injectable()
 export class UserService {
@@ -23,6 +24,7 @@ export class UserService {
     private jwtService: JwtService,
     private readonly mediaService: MediaService,
     private readonly mailService: EmailService,
+    private readonly botService: TelegramBotService,
   ) {}
 
   // Signup User Service
@@ -88,7 +90,9 @@ export class UserService {
         httpOnly: true,
       });
 
+      // Servicelar: Email & TelegramBot
       this.mailService.sendMail(user.email, 'Salom, Siz tizimga kirdingiz.');
+      this.botService.sendMessage(`${user.email} user tizimga login qildi.`);
 
       return tokens;
     } catch (error) {
