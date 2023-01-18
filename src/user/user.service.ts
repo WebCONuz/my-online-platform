@@ -52,6 +52,9 @@ export class UserService {
       });
 
       this.mailService.sendMail(newUser.email, "Salom, Ro'yxatdan o'tdingiz.");
+      this.botService.sendMessage(
+        `${newUser.email} user tizimdan ro'yxatdan o'tdi.`,
+      );
 
       return tokens;
     } catch (error) {

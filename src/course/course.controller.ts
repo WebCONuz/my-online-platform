@@ -37,7 +37,6 @@ export class CourseController {
   // Get all Course Controller
   @ApiOperation({ summary: 'Get all Course' })
   @ApiResponse({ status: 200, type: [Course] })
-  @UseGuards(AllAdminGuard)
   @Get()
   getAll() {
     return this.courseService.getAll();
@@ -46,7 +45,6 @@ export class CourseController {
   // Get one Course Controller
   @ApiOperation({ summary: 'Get one Course' })
   @ApiResponse({ status: 200, type: Course })
-  @UseGuards(AuthorAdminReqBodyGuard)
   @Get(':id')
   getOne(@Param('id') id: number) {
     return this.courseService.getOne(+id);
